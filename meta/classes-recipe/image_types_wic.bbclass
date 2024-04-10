@@ -57,6 +57,7 @@ def wks_search(files, search_path):
             if searched:
                 return searched
 
+WIC_DEPLOY_PARTITIONS ?= "0"
 WIC_CREATE_EXTRA_ARGS ?= ""
 
 IMAGE_CMD:wic () {
@@ -91,6 +92,13 @@ IMAGE_CMD:wic () {
 		shift
 	done
 	mv "$build_wic/$(basename "${wks%.wks}")"*.${IMAGER} "$out.wic"
+	if [ "${WIC_DEPLOY_PARTITIONS}" = "1" ]; then
+		out_part="${IMGDEPLOYDIR}/${IMAGE_LINK_NAME}"
+		for wicPart in $(ls $build_wic/*$IMAGER.p*); do
+			part=$(echo "$wicPart" | sed -n "s/^.*\($IMAGER\.p[0-9]\)$/\1/p")
+			mv "$wicPart" "$out_part.wic.$part"
+		done
+	fi
 }
 IMAGE_CMD:wic[vardepsexclude] = "WKS_FULL_PATH WKS_FILES TOPDIR"
 SPDX_IMAGE_PURPOSE:wic = "diskImage"
