@@ -10,12 +10,16 @@ SRC_URI[sha256sum] = "6aa33039a93fffa4563e655b61d11364d01264be8ccb49906101e02a33
 PYPI_PACKAGE = "pyOpenSSL"
 inherit pypi setuptools3
 
+SRC_URI += " \
+    file://CVE-2026-27448.patch \
+    file://CVE-2026-27459.patch \
+"
+
 PACKAGES =+ "${PN}-tests"
 FILES:${PN}-tests = "${libdir}/${PYTHON_DIR}/site-packages/OpenSSL/test"
 
 RDEPENDS:${PN}:class-target = " \
     python3-cryptography \
-    python3-six \
     python3-threading \
 "
 RDEPENDS:${PN}-tests = "${PN}"

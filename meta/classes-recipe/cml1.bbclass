@@ -31,7 +31,7 @@ CROSS_CURSES_LIB = "-lncurses -ltinfo"
 CROSS_CURSES_INC = '-DCURSES_LOC="<curses.h>"'
 TERMINFO = "${STAGING_DATADIR_NATIVE}/terminfo"
 
-KCONFIG_CONFIG_COMMAND ??= "menuconfig"
+KCONFIG_CONFIG_COMMAND ??= "menuconfig ${EXTRA_OEMAKE}"
 KCONFIG_CONFIG_ENABLE_MENUCONFIG ??= "true"
 KCONFIG_CONFIG_ROOTDIR ??= "${B}"
 python do_menuconfig() {
@@ -93,10 +93,9 @@ python do_diffconfig() {
 
     if isdiff:
         statement = 'diff --unchanged-line-format= --old-line-format= --new-line-format="%L" ' + configorig + ' ' + config + '>' + fragment
-        subprocess.call(statement, shell=True)
         # No need to check the exit code as we know it's going to be
         # non-zero, but that's what we expect.
-        shutil.copy(configorig, config)
+        subprocess.call(statement, shell=True)
 
         bb.plain("Config fragment has been dumped into:\n %s" % fragment)
     else:

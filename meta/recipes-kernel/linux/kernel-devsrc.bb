@@ -134,6 +134,7 @@ do_install() {
         rm -f $kerneldir/build/include/generated/.vdso-offsets.h.cmd
         rm -f $kerneldir/build/include/generated/.compat_vdso-offsets.h.cmd
         rm -f $kerneldir/build/include/generated/.vdso32-offsets.h.cmd
+        rm -f $kerneldir/build/include/generated/.vdso64-offsets.h.cmd 
     )
 
     # now grab the chunks from the source tree that we need
@@ -155,7 +156,7 @@ do_install() {
             # these are a few files associated with objtool, since we'll need to
             # rebuild it
             cp -a --parents tools/build/Build.include $kerneldir/build/
-            cp -a --parents tools/build/Build $kerneldir/build/
+            cp -a --parents tools/build/Build $kerneldir/build/ 2>/dev/null || :
             cp -a --parents tools/build/fixdep.c $kerneldir/build/
             cp -a --parents tools/scripts/utilities.mak $kerneldir/build/
 

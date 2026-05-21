@@ -10,6 +10,7 @@ LIC_FILES_CHKSUM = "file://zlib.h;beginline=6;endline=23;md5=5377232268e952e9ef6
 SRC_URI = "https://zlib.net/${BP}.tar.gz \
            file://0001-configure-Pass-LDFLAGS-to-link-tests.patch \
            file://run-ptest \
+           file://CVE-2026-27171.patch \
            "
 UPSTREAM_CHECK_URI = "http://zlib.net/"
 
@@ -46,5 +47,7 @@ do_install_ptest() {
 
 BBCLASSEXTEND = "native nativesdk"
 
-CVE_STATUS[CVE-2023-45853] = "not-applicable-config: we don't build minizip"
-CVE_STATUS[CVE-2023-6992] = "cpe-incorrect: this CVE is for cloudflare zlib"
+# Adding 'CVE_PRODUCT' to avoid false detection of CVEs
+CVE_PRODUCT = "zlib:zlib gnu:zlib"
+
+CVE_STATUS[CVE-2026-22184] = "not-applicable-config: vulnerable file is not compiled"

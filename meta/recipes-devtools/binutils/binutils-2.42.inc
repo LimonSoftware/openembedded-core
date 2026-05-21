@@ -19,8 +19,11 @@ SRCBRANCH ?= "binutils-2_42-branch"
 UPSTREAM_CHECK_GITTAGREGEX = "binutils-(?P<pver>\d+_(\d_?)*)"
 
 CVE_STATUS[CVE-2023-25584] = "cpe-incorrect: Applies only for version 2.40 and earlier"
+CVE_STATUS[CVE-2025-1180] = "patched: fixed by patch for CVE-2025-1176" 
+CVE_STATUS[CVE-2025-69650] = "disputed: observed behavior only in pre-release code, does not affect any tagged version"
+CVE_STATUS[CVE-2025-69651] = "disputed: observed behavior only in pre-release code, does not affect any tagged version"
 
-SRCREV ?= "553c7f61b74badf91df484450944675efd9cd485"
+SRCREV ?= "f9488b0d92b591bdf3ff8cce485cb0e1b3727cc0"
 BINUTILS_GIT_URI ?= "git://sourceware.org/git/binutils-gdb.git;branch=${SRCBRANCH};protocol=https"
 SRC_URI = "\
      ${BINUTILS_GIT_URI} \
@@ -36,6 +39,40 @@ SRC_URI = "\
      file://0013-Define-alignof-using-_Alignof-when-using-C11-or-newe.patch \
      file://0014-Remove-duplicate-pe-dll.o-entry-deom-targ_extra_ofil.patch \
      file://0015-gprofng-change-use-of-bignum-to-bigint.patch \
-     file://0016-aarch64-Remove-asserts-from-operand-qualifier-decode.patch \
+     file://0016-CVE-2024-53589.patch \
+     file://0017-dlltool-file-name-too-long.patch \
+     file://0018-opcodes-fix-std-gnu23-compatibility-wrt-static_assert.patch \
+     file://0019-Fix-32097-Warnings-when-building-gprofng-with-Clang.patch \
+     file://0020-gprofng-fix-std-gnu23-compatibility-wrt-unprototyped.patch \
+     file://0021-gprofng-fix-build-with-std-gnu23.patch \
+     file://0022-gprofng-protect-against-standard-library-macros.patch \
+     file://0018-CVE-2025-0840.patch \
+     file://CVE-2025-1176.patch \
+     file://CVE-2025-1178.patch \
+     file://CVE-2024-57360.patch \
+     file://CVE-2025-1181-pre.patch \
+     file://CVE-2025-1181.patch \
+     file://CVE-2025-1182.patch \
+     file://0019-CVE-2025-1153-1.patch \
+     file://0020-CVE-2025-1153-2.patch \
+     file://0021-CVE-2025-1153-3.patch \
+     file://CVE-2025-1179-pre.patch \
+     file://CVE-2025-1179.patch \
+     file://0022-CVE-2025-5245.patch \
+     file://0022-CVE-2025-5244.patch \
+     file://0023-CVE-2025-7546.patch \
+     file://0023-CVE-2025-7545.patch \
+     file://0024-CVE-2025-11082.patch \
+     file://0025-CVE-2025-11083.patch \
+     file://0026-CVE-2025-11081.patch \
+     file://0027-CVE-2025-8225.patch \
+     file://CVE-2025-11414.patch \
+     file://CVE-2025-11412.patch \
+     file://CVE-2025-11413.patch \
+     file://0028-CVE-2025-11494.patch \
+     file://0029-CVE-2025-11839.patch \
+     file://0030-CVE-2025-11840.patch \
+     file://CVE-2025-69647.patch \
+     file://CVE-2025-69648.patch \
 "
 S  = "${WORKDIR}/git"

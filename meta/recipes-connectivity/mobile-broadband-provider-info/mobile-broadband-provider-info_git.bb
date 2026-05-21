@@ -5,13 +5,13 @@ SECTION = "network"
 LICENSE = "PD"
 LIC_FILES_CHKSUM = "file://COPYING;md5=87964579b2a8ece4bc6744d2dc9a8b04"
 
-SRCREV = "aae7c68671d225e6d35224613d5b98192b9b2ffe"
-PV = "20230416"
+SRCREV = "18cb97517d9c831e1d2ec057e62d04fd3665e10f"
+PV = "20251101"
 PE = "1"
 
 SRC_URI = "git://gitlab.gnome.org/GNOME/mobile-broadband-provider-info.git;protocol=https;branch=main"
 S = "${WORKDIR}/git"
 
-inherit autotools
+inherit meson
 
 DEPENDS += "libxslt-native"
